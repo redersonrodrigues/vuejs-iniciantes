@@ -11,6 +11,7 @@
         .verde {
             background-color: green;
         }
+
         .branca {
             background-color: white;
         }
@@ -22,6 +23,7 @@
         .vermelha {
             background-color: red;
         }
+
         .borda {
             border: 1px solid;
         }
@@ -42,35 +44,52 @@
 <body>
 
     <div id="app">
-        <div class="borda div-principal" :class="cor">
-            Cor: {{ cor }}
-            <br>
-            Posição X do Mouse: {{ posicaoX }}
-            Posição Y do Mouse: {{ posicaoY }}
-        </div>
+        <a href="https://jorgesantana.net.br" target="_blank" v-on:click.prevent="prevenirComportamentoPadrao()">
+            Link
+        </a>
+        <br>
+        Mensagem: {{ msg }}
         <hr>
-        <div @click="mudarCor('verde')" class="borda div-comum"></div>
-        <div class="borda div-comum" @mouseover="mudarCor('azul')" @mouseout="mudarCor('vermelha')"></div>
-        <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
+        <button @click.once="executarUmaVez()">Botão</button>
+        <p>Cliques: {{ cliques }} </p>
+        <br>
+        <hr>
+        <form @submit.prevent.once="prevenirUmaVez()">
+            <button type="submit">Enviar</button>
+        </form>
+        <p>Formulário: {{ formulario }}</p>
+        <hr>
+        <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
+        <br>
+        Teclas: {{ teclas }}
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                cor: 'branco',
-                posicaoX: 0,
-                posicaoY: 0
+                msg: '',
+                cliques: 0,
+                formulario: '',
+                teclas: ''
             },
             methods: {
-                mudarCor(c) {
-                    //console.log(c);
-                    this.cor = c
+                prevenirComportamentoPadrao() {
+                    // event.preventDefault();// não deixa executar comportamento padrão (pode ser  no proprio metodo como vou deixar feito)
+
+                    this.msg = 'Comportamento padrão ativado.'
                 },
-                coordenadas(e){
-                    // console.log(e.clientX, e.clientY);
-                    this.posicaoX = e.clientX
-                    this.posicaoY = e.clientY
+                executarUmaVez() {
+
+                    this.cliques++
+
+                },
+                prevenirUmaVez() {
+                    this.formulario = 'Prevenindo o comportamento padrão'
+                },
+                capturandoTeclas(event) {
+                    // this.teclas += event.key
+                    this.teclas = 'Modificadores encadeados com sucesso!'
                 }
             }
         })
