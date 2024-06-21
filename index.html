@@ -11,9 +11,30 @@
         .verde {
             background-color: green;
         }
+        .branca {
+            background-color: white;
+        }
 
         .azul {
             background-color: blue;
+        }
+
+        .vermelha {
+            background-color: red;
+        }
+        .borda {
+            border: 1px solid;
+        }
+
+        .div-principal {
+            width: 200px;
+            height: 200px;
+        }
+
+        .div-comum {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -21,27 +42,37 @@
 <body>
 
     <div id="app">
-<input type="text" @keyup="imprimirTexto('Enviando paramentro',5)"> <!-- // @ substitui o bind v-on: -->
-<button @click="mensagemAlerta( 'texto',$event, 100)" >Botão</button>
-
+        <div class="borda div-principal" :class="cor">
+            Cor: {{ cor }}
+            <br>
+            Posição X do Mouse: {{ posicaoX }}
+            Posição Y do Mouse: {{ posicaoY }}
+        </div>
+        <hr>
+        <div @click="mudarCor('verde')" class="borda div-comum"></div>
+        <div class="borda div-comum" @mouseover="mudarCor('azul')" @mouseout="mudarCor('vermelha')"></div>
+        <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                xyz: true
+                cor: 'branco',
+                posicaoX: 0,
+                posicaoY: 0
             },
             methods: {
-                imprimirTexto(t,n){
-                    console.log(t);
-                    console.log(n);
-                    console.log(this.xyz);
+                mudarCor(c) {
+                    //console.log(c);
+                    this.cor = c
                 },
-                mensagemAlerta(p1,evento,p2){
-                    console.log(evento, p1, p2);
+                coordenadas(e){
+                    // console.log(e.clientX, e.clientY);
+                    this.posicaoX = e.clientX
+                    this.posicaoY = e.clientY
                 }
-            },
+            }
         })
 
     </script>
