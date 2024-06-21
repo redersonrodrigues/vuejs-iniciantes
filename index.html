@@ -21,7 +21,7 @@
 <body>
 
     <div id="app">
-<input type="text" @keyup="imprimirTexto()"> <!-- // @ substitui o bind v-on: -->
+<input type="text" @keyup="imprimirTexto('Enviando paramentro',5)"> <!-- // @ substitui o bind v-on: -->
 <button @click="mensagemAlerta()" >Botão</button>
 
     </div>
@@ -29,10 +29,14 @@
     <script>
         const vm = new Vue({
             el: '#app',
-            data: {},
+            data: {
+                xyz: true
+            },
             methods: {
-                imprimirTexto(){
-                    console.log('Teste');
+                imprimirTexto(t,n){
+                    console.log(t);
+                    console.log(n);
+                    console.log(this.xyz);
                 },
                 mensagemAlerta(){
                     alert('Mensagem de alerta!')
