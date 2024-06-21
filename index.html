@@ -12,7 +12,12 @@
 <body>
 
     <div id="app">
-        {{ mensagem }}
+        {{ mensagem }}                  <br>
+        Valor Total: {{ valorToral }}   <br>
+        Logado: {{ logado }}            <br>
+        Hobbies: {{ hobbies[3] }}       <br>
+        Perfil: {{ perfil.site }}, {{ perfil.cursos[0].nome }}
+
     </div>
     <script>
         // options = {
@@ -26,12 +31,35 @@
 
         // console.log(vm);
 
-        /*** No dia a dia vamos achar de forma que segue comumente ***/ 
-       
+        /*** No dia a dia vamos achar de forma que segue comumente ***/
+
         const vm = new Vue({
             el: '#app',
             data: {
-                mensagem: 'Primeiro Template controlado pelo vue'
+                mensagem: 'Primeiro Template controlado pelo vue', //string
+                valorToral: 150.47, // número
+                logado: false, // boolean
+                hobbies: [
+                    'Dormir',
+                    'Colecionar video games antigos',
+                    'Correr',
+                    'Trillas'
+                ],
+                perfil: {
+                    nome: 'Jorge Santana',
+                    site: 'jorge.net.br',
+                    idade: 32,
+                    cursos: [
+                        {
+                            nome: 'Laravel',
+                            cargaHoraria: '50 horas'
+                        },
+                        {
+                            nome:'Banco de dados relacionais',
+                            cargaHoraria:'40 horas'
+                        }
+                    ]
+                }
             },
         })
 
