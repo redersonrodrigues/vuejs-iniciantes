@@ -16,7 +16,6 @@
         {{ subtrair() }}        <br>
         {{ multiplicar() }}     <br>
         {{ dividir() }}         <br>
-        {{ numeroAleatorio() }} 
     </div>
     <script>
         // options = {
@@ -34,23 +33,23 @@
 
         const vm = new Vue({
             el: '#app',
-            data: {},
+            data: {
+                n1: 10,
+                n2: 5
+            },
             methods: {
                 somar: function somar() { // convencional
-                    return 4 + 2;
+                    return this.n1 + this.n2;
                 },
                 subtrair: function(){ // anônima
-                    return 4 - 2;
+                    return this.n1 - this.n2;
                 },
                 multiplicar: () => { // arow function
-                    return 4 * 2;
+                    return this.n1 * this.n2; // contexto léxico
                 },
                 dividir() { // forma direta
-                    return 4 / 2;
+                    return this.n1 / this.n2;
                 },
-                numeroAleatorio: function numeroAleatorio() {
-                    return Math.random();
-                }
             },
         })
 
