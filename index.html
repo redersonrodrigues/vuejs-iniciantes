@@ -9,10 +9,11 @@
     <title>Document</title>
     <style>
         .verde {
-            color: green;
+            background-color: green;
         }
-        .negrito {
-            font-weight: bold;
+
+        .azul {
+            background-color: blue;
         }
     </style>
 </head>
@@ -20,25 +21,17 @@
 <body>
 
     <div id="app">
-        <a :href="site">Site </a>
-        <p  class="negrito" :class="cor">Entendendo a diretiva v-bind</p>
-        <input type="text" name="" id="" :placeholder="instrucaoDePreenchimento" v-bind:value="valor">
-        <input type="checkbox" name="" id="" :checked="check">
+        {{ 2 + 2 }}
+         <input :value="2 + 2" :class="teste ? 'verde' : estilo"> <!-- v-bind no value, class-->
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-
-                site: 'https://jorgesantana.net.br',
-                cor: 'verde',
-                instrucaoDePreenchimento: 'Placeholder - diretiva v-bind',
-                valor: 'Entendendo a diretiva v-bind',
-                check: true,
-                n1: 10,
-                n2: 5
-            },
+                mensagem: 'Expressão',
+                estilo: 'azul',
+                teste: true            },
             methods: {},
         })
 
