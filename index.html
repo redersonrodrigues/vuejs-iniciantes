@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,36 @@
     <script src="./vue.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-    Teste Live Server
+
+    <div id="app">
+        {{ mensagem }}
+    </div>
+    <script>
+        // options = {
+        //     el: '#app', // # para selecionar por id | . para selecionar por classe 
+        //     data: // vai guardar variaveis/atributos reativos
+        //     {
+        //         mensagem: 'Primeiro template controlado pelo vue'
+        //     }
+        // }
+        // const vm = new Vue(options) // vm = vem de viewModel
+
+        // console.log(vm);
+
+        /*** No dia a dia vamos achar de forma que segue comumente ***/ 
+       
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                mensagem: 'Primeiro Template controlado pelo vue'
+            },
+        })
+
+    </script>
+
+
 </body>
+
 </html>
