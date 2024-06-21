@@ -45,9 +45,16 @@
                     return this.n1 - this.n2;
                 },
                 multiplicar: () => { // arow function
+                    console.log(this);
                     return this.n1 * this.n2; // contexto léxico
                 },
                 dividir() { // forma direta
+                    let f = ()=>{
+                        console.log('**********',this);
+                        return'Teste';
+                    }
+                    console.log(f());
+                    console.log(this);
                     return this.n1 / this.n2;
                 },
             },
