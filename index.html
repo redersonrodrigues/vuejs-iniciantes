@@ -12,12 +12,11 @@
 <body>
 
     <div id="app">
-        {{ mensagem }}                  <br>
-        Valor Total: {{ valorToral }}   <br>
-        Logado: {{ logado }}            <br>
-        Hobbies: {{ hobbies[3] }}       <br>
-        Perfil: {{ perfil.site }}, {{ perfil.cursos[0].nome }}
-
+        {{ somar() }}           <br>
+        {{ subtrair() }}        <br>
+        {{ multiplicar() }}     <br>
+        {{ dividir() }}         <br>
+        {{ numeroAleatorio() }} 
     </div>
     <script>
         // options = {
@@ -35,30 +34,22 @@
 
         const vm = new Vue({
             el: '#app',
-            data: {
-                mensagem: 'Primeiro Template controlado pelo vue', //string
-                valorToral: 150.47, // número
-                logado: false, // boolean
-                hobbies: [
-                    'Dormir',
-                    'Colecionar video games antigos',
-                    'Correr',
-                    'Trillas'
-                ],
-                perfil: {
-                    nome: 'Jorge Santana',
-                    site: 'jorge.net.br',
-                    idade: 32,
-                    cursos: [
-                        {
-                            nome: 'Laravel',
-                            cargaHoraria: '50 horas'
-                        },
-                        {
-                            nome:'Banco de dados relacionais',
-                            cargaHoraria:'40 horas'
-                        }
-                    ]
+            data: {},
+            methods: {
+                somar: function somar() { // convencional
+                    return 4 + 2;
+                },
+                subtrair: function(){ // anônima
+                    return 4 - 2;
+                },
+                multiplicar: () => { // arow function
+                    return 4 * 2;
+                },
+                dividir() { // forma direta
+                    return 4 / 2;
+                },
+                numeroAleatorio: function numeroAleatorio() {
+                    return Math.random();
                 }
             },
         })
