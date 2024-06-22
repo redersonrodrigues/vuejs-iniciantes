@@ -14,35 +14,48 @@
 <body>
 
     <div id="app">
-        <input type="text" id="inputTexto">
-        <br>
-        <select id="opcoes">
-            <option value="A">Opção 1</option>
-            <option value="B">Opção 2</option>
-            <option value="C">Opção 3</option>
-        </select>
-        <br>
-        <p id="paragrafo" style="color: green;">Parágrafo</p>
-        <br>
-        <div id="bloco">Conteúdo interno da div bloco</div>
-        <button @click="selecionarElementoFilho()">Botão</button>
+        <!-- v-if simples -->
+        <button @click="exibirSaldo = !exibirSaldo"> <!-- toggle -->
+            <span v-if="!exibirSaldo">Exibir Saldo</span>
+            <span v-if="exibirSaldo">Ocultar Saldo</span>
+        </button>
+        <p>Saldo: <span v-if="exibirSaldo">R$ {{ saldo }}</span></p>
+        <hr>
+
+
+        <!-- v-if e v-else -->
+        Idade: <input type="text" id="inputIdade" @blur="setIdade()">
+        <p v-if="idade < 18">Menor de idade</p>
+        <p v-else>Maior de idade</p>
+        <hr>
+
+        <!-- v-if v-else v-else-if -->
+        Nota: <input type="text" id="inputNota" @blur="setNota()">
+        <p v-if="nota == ''">Digite a nota do aluno</p>
+        <p v-else-if="nota >= 7 && nota <= 10">Aluno aprovado</p>
+        <p v-else-if="nota >= 5 && nota < 7">Aluno em recuperação</p>
+        <p v-else-if="nota >= 0 && nota < 5">Aluno reprovado</p>
+        <p v-else>A nota informada é inválida.</p>
+
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
-            data: {},
+            data: {
+                saldo: 4570.17,
+                exibirSaldo: false,
+                idade: 0,
+                nota: 0
+            },
             methods: {
-                selecionarElementoFilho() {
-                    // console.log(inputTexto); // recupero elemento filho pelo id
-                    // console.log(inputTexto.type);// recuperando propriedade type do elemento filho
-                    // console.log(inputTexto.value); //recuperando value
-                    
-                    //console.log(opcoes.value);
-
-                    // console.log(paragrafo.style.color);
-
-                    console.log(bloco.innerHTML); // recupera conteudo interno da div
+                setIdade() {
+                    // console.log(inputIdade.value);
+                    this.idade = inputIdade.value
+                },
+                setNota() {
+                    this.nota = inputNota.value
+                    console.log(this.nota)
 
                 }
             }
