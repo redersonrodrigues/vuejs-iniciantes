@@ -21,27 +21,37 @@
         <!-- segunda forma (chave ou key = indice do array) -->
         <ul>
             <!-- <li v-for="(curso,chave) in cursos">{{chave}} - {{curso}}</li>  -->
-            <li v-for="(curso,chave) in cursos" v-text="chave +' - '+ curso"></li> 
+            <li v-for="(curso,chave) in cursos" v-text="chave +' - '+ curso"></li>
 
         </ul>
-<hr>
+        <hr>
 
-<table border="1">
-    <thead>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Descrição</th>
-    </thead>
-    <tbody>
-        <!-- <tr v-for="(curso, index) in cursos" :key="index"> --><!-- esse é o modo convencional-->
-            <tr v-for="({titulo, descricao}, index) in cursos" :key="index"> <!-- usando destructuring assignment ou seja escolhendo campos/atributos-->
-            <td>{{ index }}</td>
-            <td>{{ titulo }}</td>
-            <td>{{ descricao }}</td>
-        </tr>
+        <table border="1">
+            <thead>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descrição</th>
+            </thead>
+            <tbody>
+                <!-- <tr v-for="(curso, index) in cursos" :key="index"> --><!-- esse é o modo convencional-->
+                <tr v-for="({titulo, descricao}, index) in cursos" :key="index">
+                    <!-- usando destructuring assignment ou seja escolhendo campos/atributos-->
+                    <td>{{ index }}</td>
+                    <td>{{ titulo }}</td>
+                    <td>{{ descricao }}</td>
+                </tr>
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+        <hr>
+        <ul>
+            <li v-for="(p) in publicacoes" :key="p.id" style="border: solid 1px; margin-bottom: 10px;">
+                {{ p.publicacao }}
+                <hr>
+                <input type="text">
+            </li>
+        </ul>
+        <button @click="misturarArray()">Misturar Publicações</button>
 
     </div>
 
@@ -51,7 +61,7 @@
             data: {
                 cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular'],
                 cursos: {
-                    1000:{
+                    1000: {
                         titulo: 'Laravel',
                         descricao: 'Domine o framework PHP mais poderoso do mundo'
                     },
@@ -59,9 +69,23 @@
                         titulo: 'Banco de Dados',
                         descricao: 'Aprenda os principais BDs relacionais do mercado'
                     }
-                }
+                },
+                publicacoes: [
+                    { id: 1, publicacao: 'publicação 1' },
+                    { id: 2, publicacao: 'publicação 2' },
+                    { id: 3, publicacao: 'publicação 3' },
+                ]
             },
-            methods: {}
+            methods: {
+                misturarArray() {
+                    let misturado = []
+
+                    misturado[0] = this.publicacoes[2]
+                    misturado[1] = this.publicacoes[0]
+                    misturado[2] = this.publicacoes[1]
+                    this.publicacoes = misturado
+                }
+            }
         })
 
     </script>
