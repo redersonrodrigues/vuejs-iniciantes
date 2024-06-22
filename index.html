@@ -18,6 +18,10 @@
  <div>
             {{ elementosHTML }} 
  </div>
+ <!-- usando v-text = recebe o conteudo descrito em data como texto é o mesmo efeito do {{ }}
+  - sobrepõe também o conteúdo existendo no elemento de bind -->
+  <br>
+  <div v-text="elementosHTML"></div>
 <br>
 <!-- recebe o conteudo renderizado - obs: sobrepoem o conteudo existente no elemento de bind -->
 <div v-html="elementosHTML"></div>
