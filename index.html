@@ -14,27 +14,27 @@
 <body>
 
     <div id="app">
-        <p v-once>Saldo Inicial: {{ saldo }}</p> <!-- v-once - permite somente uma vez-->
-        <p>Saldo atualizado: {{ saldo }}</p>
-        <input type="text" id="valor">
-        <button @click="creditar()">Creditar</button>
-        <button @click="debitar()">Debitar</button>
+        <!-- primeira forma -->
+        <!-- <ul>
+            <li v-for="curso in cursos" v-text="curso"></li> 
+        </ul> -->
+        <!-- segunda forma (chave ou key = indice do array) -->
+        <ul>
+            <!-- <li v-for="(curso,chave) in cursos">{{chave}} - {{curso}}</li>  -->
+            <li v-for="(curso,chave) in cursos" v-text="chave +' - '+ curso"></li> 
+
+        </ul>
+
+
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                saldo: 1100
+                cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular']
             },
-            methods: {
-                creditar(){
-                    this.saldo += parseFloat(valor.value)
-                },
-                debitar() {
-                    this.saldo -= parseFloat(valor.value)
-                }
-            }
+            methods: {}
         })
 
     </script>
