@@ -15,54 +15,13 @@
 
     <div id="app">
         <ul>
-            <li v-for="n in 10">{{ n }}
+            <li v-for="c in comentarios">{{ c.id }} - {{ c.comentario }}
 
             </li>
         </ul>
-        <ul>
-            <li v-for="n in numero">{{ n }}
-
-            </li>
-        </ul>
-        <hr>
-        <!-- primeira forma -->
-        <!-- <ul>
-            <li v-for="curso in cursos" v-text="curso"></li> 
-        </ul> -->
-        <!-- segunda forma (chave ou key = indice do array) -->
-        <ul>
-            <!-- <li v-for="(curso,chave) in cursos">{{chave}} - {{curso}}</li>  -->
-            <li v-for="(curso,chave) in cursos" v-text="chave +' - '+ curso"></li>
-
-        </ul>
-        <hr>
-
-        <table border="1">
-            <thead>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Descrição</th>
-            </thead>
-            <tbody>
-                <!-- <tr v-for="(curso, index) in cursos" :key="index"> --><!-- esse é o modo convencional-->
-                <tr v-for="({titulo, descricao}, index) in cursos" :key="index">
-                    <!-- usando destructuring assignment ou seja escolhendo campos/atributos-->
-                    <td>{{ index }}</td>
-                    <td>{{ titulo }}</td>
-                    <td>{{ descricao }}</td>
-                </tr>
-
-            </tbody>
-        </table>
-        <hr>
-        <ul>
-            <li v-for="(p) in publicacoes" :key="p.id" style="border: solid 1px; margin-bottom: 10px;">
-                {{ p.publicacao }}
-                <hr>
-                <input type="text">
-            </li>
-        </ul>
-        <button @click="misturarArray()">Misturar Publicações</button>
+        <button @click="adicionarElemento()">Adicionar</button>
+        <button @click="removerElemento()">Remover</button>
+        <button @click="modificarElemento()">Atualizar</button>
 
     </div>
 
@@ -70,33 +29,32 @@
         const vm = new Vue({
             el: '#app',
             data: {
-                numero: 5,
-                cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular'],
-                cursos: {
-                    1000: {
-                        titulo: 'Laravel',
-                        descricao: 'Domine o framework PHP mais poderoso do mundo'
-                    },
-                    1001: {
-                        titulo: 'Banco de Dados',
-                        descricao: 'Aprenda os principais BDs relacionais do mercado'
-                    }
-                },
-                publicacoes: [
-                    { id: 1, publicacao: 'publicação 1' },
-                    { id: 2, publicacao: 'publicação 2' },
-                    { id: 3, publicacao: 'publicação 3' },
+                comentarios: [
+                    { id: 1, comentario: 'Comentario 1' },
+                    { id: 2, comentario: 'Comentario 2' },
+                    { id: 3, comentario: 'Comentario 3' },
                 ]
             },
             methods: {
-                misturarArray() {
-                    let misturado = []
+                adicionarElemento() {
+                    // this.comentarios[3] = {id:4, comentario:'Novo comentario'}
+                    // console.log(this.comentarios)
+                    this.comentarios.push({ id: 4, comentario: 'Novo comentario' })
+                },
+                removerElemento() {
+                    this.comentarios.pop() // remove o ultimo adicionado
+                },
+                modificarElemento() {
+                    // this.comentarios[1] = {id:2, comentario:'comentario 2 Atualizado'}
+                    // console.log(this.comentarios[1]);
+                    // this.$set(<array>,<chave>,<novo_valor>)
+                    this.$set(
+                        this.comentarios, // array
+                        1,// chave do array
+                        {id:2, comentario:'comentario 2 Atualizado'}) // valor a ser trocado                        
 
-                    misturado[0] = this.publicacoes[2]
-                    misturado[1] = this.publicacoes[0]
-                    misturado[2] = this.publicacoes[1]
-                    this.publicacoes = misturado
                 }
+
             }
         })
 
